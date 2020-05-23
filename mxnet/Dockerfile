@@ -18,9 +18,6 @@
 #
 # Dockerfile to build MXNet for CPU
 
-# Grab the bionic (18.04) ubuntu distro
-# FROM ubuntu:18.04
-
 # Grab the latest Databricks runtime (ubuntu)
 FROM databricksruntime/standard:latest
 
@@ -29,6 +26,7 @@ RUN apt-get update && \
     apt-get install -y wget python3-dev gcc && \
     wget https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py
+    
 # Install the latest xml2 package which will be required by Roxygen in MXNet
 RUN apt-get install libxml2-dev libssl-dev gfortran libcurl4-gnutls-dev -y
 
@@ -46,8 +44,6 @@ RUN apt-get update \
  && R -e "install.packages('htmltools', repo = 'https://cran.microsoft.com/snapshot/2019-06-19/')" \
  && R -e "install.packages('Rserve')" \
  && R -e "install.packages('hwriterPlus', repo = 'https://mran.revolutionanalytics.com/snapshot/2017-02-26')" 
-
- 
 
 # Setup the timezone correctly for non-interactive installs
 ARG DEBIAN_FRONTEND=noninteractive
@@ -72,7 +68,7 @@ RUN update-alternatives --config gcc
 # Since we updated the default compiler, we need to make some changes to the R Makeconf to ensure that it is properly used
 COPY Makeconf /opt/microsoft/ropen/3.5.3/lib64/R/etc/Makeconf
 
-# Grab the MxNet Source and Build it!i
+# Grab the MxNet Source and Build it! These instructions can be found here: https://mxnet.apache.org/get_started/ubuntu_setup.html
 
 RUN git clone --recursive https://github.com/apache/incubator-mxnet.git mxnet \
 && cd mxnet \
