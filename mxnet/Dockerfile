@@ -89,7 +89,7 @@ RUN R -e "install.packages('Rcpp')" \
 
  # Create the python bindings for MXNet
  RUN cd /mxnet/python \
- && pip3 install --user -e .
+ && /databricks/conda/envs/dcs-minimal/bin/pip install --user -e .
 
  # Now create the R MXNet bindings
  RUN cd /mxnet \
