@@ -1,7 +1,8 @@
 # databricks-clusterimages
 ## A Repository to Store dockerfiles for Custom Azure Databricks Cluster Implementations
+### In theory these will work on AWS as well, but I have not tested that
 
-### Usage
+#### Usage
 
 Locate the appropriate Dockerfile that supports the use case you want to deploy then follow these steps:
 
