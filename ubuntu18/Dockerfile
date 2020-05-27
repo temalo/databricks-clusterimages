@@ -57,7 +57,7 @@ RUN apt-get install -y tzdata
 # Now that the python and conda environments are properly configured, install Microsoft R Open
 # And add the necessary Spark libraries for R
 RUN apt-get update \
- && apt-get install -y curl libcurl4-openssl-dev wget \
+ && apt-get install -y curl libcurl4-openssl-dev wget libssl-dev libxml2-dev \
  && apt-get install -y software-properties-common apt-transport-https r-base-dev\
  && apt-get clean;
 
@@ -73,7 +73,8 @@ RUN apt-get update \
  && ./install.sh -a -s \
  && R -e "install.packages('htmltools', repo = 'https://cran.microsoft.com/snapshot/2019-06-19/')" \
  && R -e "install.packages('Rserve')" \
- && R -e "install.packages('hwriterPlus', repo = 'https://mran.revolutionanalytics.com/snapshot/2017-02-26')" 
+ && R -e "install.packages('hwriterPlus', repo = 'https://mran.revolutionanalytics.com/snapshot/2017-02-26')" \
+ && R -e "install.packages('sparklyr)'"
 
 
  
