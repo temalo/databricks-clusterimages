@@ -7,8 +7,9 @@ RUN apt-get update && \
     wget https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py
     
-# Install the latest xml2 package which will be required by Roxygen in MXNet
-RUN apt-get install libxml2-dev libssl-dev gfortran libcurl4-gnutls-dev -y
+# Install the latest xml2 package and associated dev headers which will be required by Roxygen in MXNet
+RUN apt-get install libxml2-dev libssl-dev gfortran libcurl4-gnutls-dev libiodbc2-dev -y
+
 
 # Install Microsoft R Open and then add the necessary Spark libraries
 RUN apt-get update \
