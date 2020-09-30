@@ -67,6 +67,7 @@ RUN apt-get update \
  && apt-get update 
 
  # Download Microsoft R Open and install, then add Spark-specific libraries 
+ # Also add some libraries that I use frequently
  RUN wget https://mran.blob.core.windows.net/install/mro/3.5.3/ubuntu/microsoft-r-open-3.5.3.tar.gz \
  && tar -xf microsoft-r-open-3.5.3.tar.gz \
  && cd microsoft-r-open \
@@ -74,7 +75,12 @@ RUN apt-get update \
  && R -e "install.packages('htmltools', repo = 'https://cran.microsoft.com/snapshot/2019-06-19/')" \
  && R -e "install.packages('Rserve')" \
  && R -e "install.packages('hwriterPlus', repo = 'https://mran.revolutionanalytics.com/snapshot/2017-02-26')" \
- && R -e "install.packages('sparklyr')"
+ && R -e "install.packages('forecast')" \
+ && R -e "install.packages('sparklyr')" \
+ && R -e "install.packages('Rcpp')" \
+ && R -e "install.packages('DiagrammeR')" \
+ && R -e "install.packages('data.table')" \
+ && R -e "install.packages('roxygen2')"
 
 
  
